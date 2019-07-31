@@ -1,0 +1,39 @@
+<!-- Charging station 20m radius & polyline of the parkhaus poligon -->
+<!-- https://parking-accumulator.azurewebsites.net/swagger-ui.html -->
+<!-- https://www.mapdevelopers.com/draw-circle-tool.php -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Haversine Formula</title>
+</head>
+<body>
+  <h2>Haversine Formula -  Distance between two coordinates</h2>
+  <script>
+    
+//format for the coordinates : alert(calcCrow(lat1,lng1,lat2,lng2).toFixed(1));    
+alert('the distance between the given to coordinates is '+ calcCrow(48.1638960, 11.5693550, 48.1633200, 11.5691610).toFixed(1)+' meters');
+
+//This function (haversine formula) takes in latitude and longitude of two location and returns the distance between them as the crow flies 
+function calcCrow(lat1, lon1, lat2, lon2) 
+{
+  var R = 6378137; // m (for km divide by 1000)
+  var dLat = toRad(lat2-lat1);
+  var dLon = toRad(lon2-lon1);
+  var lat1 = toRad(lat1);
+  var lat2 = toRad(lat2);
+
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c;
+  return d;
+}
+
+// Converts numeric degrees to radians
+function toRad(Value) 
+{
+    return Value * Math.PI / 180;
+}
+
+</script>
